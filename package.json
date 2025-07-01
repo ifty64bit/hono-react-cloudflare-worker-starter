@@ -1,0 +1,21 @@
+{
+    "name": "bangla-insight",
+    "scripts": {
+        "dev:web": "npm --prefix web run dev",
+        "dev:worker": "wrangler dev",
+        "dev": "concurrently \"npm run dev:web\" \"npm run dev:worker\"",
+        "build:worker": "wrangler deploy --dry-run",
+        "build:web": "npm --prefix web run build",
+        "build": "npm run build:worker && npm run build:web",
+        "deploy": "wrangler deploy --minify",
+        "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    },
+    "dependencies": {
+        "hono": "^4.8.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.4",
+        "concurrently": "^9.2.0",
+        "wrangler": "^4.4.0"
+    }
+}
