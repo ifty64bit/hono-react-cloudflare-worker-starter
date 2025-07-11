@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { api } from "./lib/api";
 
 function App() {
     const [count, setCount] = useState(0);
+    const [response, setResponse] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            const res = await api.api.$get();
+            if (res.ok) {
+                const data = await res.text();
+                setResponse(data.toString());
+            } else {
+                console.error("Failed to fetch health status");
+            }
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -25,6 +41,7 @@ function App() {
                 <button onClick={() => setCount((count) => count + 1)}>
                     count is {count}
                 </button>
+                <p>API Response: {response}</p>
                 <p>
                     Edit <code>src/App.tsx</code> and save to test HMR
                 </p>

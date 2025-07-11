@@ -5,19 +5,20 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
-    resolve: {
-        alias: {
-            "@": path.resolve(__dirname, "./src"),
-            "@server": path.resolve(__dirname, "../src"),
-        },
-    },
     server: {
         proxy: {
             "/api": {
                 target: "http://localhost:8787",
                 changeOrigin: true,
-                secure: false,
+               
             },
+        },
+    },
+    resolve: {
+        alias: {
+            "@web": path.resolve(__dirname, "./src"),
+            "@api": path.resolve(__dirname, "../api/src"),
+            "@shared": path.resolve(__dirname, "../shared/src"),
         },
     },
 });
