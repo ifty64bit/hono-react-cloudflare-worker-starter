@@ -9,6 +9,7 @@ A lightweight fullstack monorepo template using:
 -   📦 **TypeScript everywhere** — full type safety across the stack
 -   🔄 **Bun** — fast package manager and runtime
 -   🚀 **Instant deploy** with `wrangler`
+-   ⚡️ **Turborepo** — high-performance build system with smart caching
 
 ---
 
@@ -52,7 +53,7 @@ bun install
 Run both frontend and backend together:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 This will:
@@ -64,7 +65,7 @@ This will:
 ## 🏗️ Build for Production
 
 ```bash
-npm run build
+bun run build
 ```
 
 This will:
@@ -72,11 +73,12 @@ This will:
 -   Build shared library
 -   Build backend Worker logic
 -   Build frontend React SPA into `web/dist`
+-   ⚡️ **Turborepo** intelligently caches and parallelizes builds
 
 ## 🚀 Deploy to Cloudflare
 
 ```bash
-npm run deploy
+bun run deploy
 ```
 
 -   Deploys your Worker + SPA to Cloudflare edge
@@ -88,10 +90,14 @@ npm run deploy
 | Script         | Description                               |
 | -------------- | ----------------------------------------- |
 | `dev`          | Run shared, worker, and frontend together |
+| `build`        | Build all packages with Turborepo caching |
+| `lint`         | Run linting across all packages           |
+| `type-check`   | Run TypeScript type checking              |
+| `test`         | Run tests across all packages             |
+| `clean`        | Clean build artifacts                     |
 | `dev:web`      | Frontend only (Vite dev server)           |
 | `dev:api`      | Worker only (Wrangler)                    |
 | `dev:shared`   | Shared library in watch mode              |
-| `build`        | Build shared, backend, and frontend       |
 | `build:web`    | Build frontend only                       |
 | `build:api`    | Build backend only                        |
 | `build:shared` | Build shared library only                 |
@@ -117,6 +123,7 @@ npm run deploy
 -   ✅ Fast Cloudflare edge deployment
 -   ✅ Monorepo structure with shared code
 -   ✅ Path aliases for clean imports
+-   ✅ **Turborepo** for intelligent caching and parallel execution
 
 ## 🧰 Tools Used
 
@@ -127,3 +134,4 @@ npm run deploy
 -   **Vite** — Fast build tool and dev server
 -   **TypeScript** — Type-safe JavaScript
 -   **Bun** — Fast package manager and runtime
+-   **Turborepo** — High-performance build system with smart caching
